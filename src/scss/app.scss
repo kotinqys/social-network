@@ -1,0 +1,16 @@
+@import './libs/normalize';
+@import './components/all';
+
+.wrapper {
+}
+
+.page{
+    .container{
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+    }
+    .content{
+        width: 100%;
+    }
+}

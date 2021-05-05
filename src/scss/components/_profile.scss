@@ -1,0 +1,145 @@
+.profile{
+    &__about{
+        display: flex;
+        background-color: #fff;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 5px;
+        margin-left: 20px;
+    }
+    &__photo{
+        max-width: 200px;
+        img {
+            width: 200px;
+            }
+    }
+    &__title{
+        width: 100%;
+        margin-left: 15px;
+    }
+    &__status {
+        cursor: pointer;
+        p{
+            margin-top: 10px;
+            height: 20px;
+            font-size: 14px;
+            color: #545454;
+        }
+        input{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+    &__status:hover{
+        background-color: #e5ebf1;
+    }
+    &__more-information{
+        margin-top: 20px;
+    }
+}
+
+.button-edit{
+    display: flex;
+    justify-content: space-between;
+    button{
+        background-color: #E5EBF1;
+        padding: 5px 20px;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 5px;
+        margin-top: 5px;
+        border: none;
+    }
+    .edit{
+        width: 200px;
+    }
+}
+
+.birthday,.city{
+    display: flex;
+    margin: 5px 0px;
+    span{
+        margin-left: 10px;
+    }
+}
+
+.posts{
+    margin-top: 20px;
+    margin-left: 20px;
+    &__create-post {
+        display: flex;
+        justify-content: center;
+        background-color: #fff;
+        margin-top: 10px;
+        border-radius: 5px;
+        justify-content: flex-end;
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        textarea{
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            resize: none;
+            border: none;
+        }
+        button{
+            cursor: pointer;
+            margin: 10px;
+            background-color: #5181b8;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
+}
+
+.post{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    &__title{
+        display: flex;
+        justify-content: center;
+        justify-content: space-between;
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        span{
+            margin-top: -5px;
+            cursor: pointer;
+        }
+    }
+    &__body{
+        margin: 15px 0px; 
+    }
+    &__author{
+        margin-left: 10px;
+        font-weight: 500;
+        p{
+            font-weight: 300;
+        }
+    }
+    &__likes{
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+    }
+    &__like{
+        cursor: pointer;
+        width: 30px;
+    }
+    &__header{
+        display: flex;
+    }
+    &__like--black {
+        width: 30px;
+        background-color: rgb(85, 85, 85);
+    }
+}

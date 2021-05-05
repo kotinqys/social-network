@@ -1,0 +1,92 @@
+.users-page{
+    max-width: 570px;
+}
+
+.users{
+    background-color: #fff;
+    padding-top: 5px;
+    margin-top: 10px;
+    margin-left: 20px;
+    &__user{
+        padding-right: 20px;
+        padding-left: 10px;
+        display: flex;
+        margin: 10px 0px;
+        justify-content: space-between;
+        align-items: center;
+        img{
+            width: 80px;
+            border-radius: 50px;
+        }
+    }
+}
+
+.user{
+    &__about {
+        display: flex;
+        align-items: center;
+    }
+    &__isfollow {
+        button{
+            cursor: pointer;
+            margin: 10px;
+            background-color: #5181b8;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .unFollow{
+            cursor: pointer;
+            margin: 10px;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border: 1px solid #5181b8;
+            border-radius: 5px;
+            background-color: rgb(245, 245, 245);
+            color: #5181b8;
+        }
+    }
+    &__name{
+        color: #2a5885;
+        font-weight: 500;
+    }
+    &__info{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+    }
+    &__status{
+        margin-top: 5px;
+        color: #656565;
+        font-size: 14px;
+    }
+}
+
+.pagination{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    li{
+        cursor: pointer;
+        padding: 3px 5px;
+        background-color: #fff;
+        margin-left: 3px;
+    }
+    button{
+        font-weight: 500;
+        cursor: pointer;
+        background-color: #5181b8;
+        border: none;
+        color: #fff;
+        padding: 2px 5px;
+        border-radius: 5px;
+        padding-bottom: 5px;
+        margin: 0px 3px;
+    }
+    .active{
+        background-color: #5181b8;
+        color: #fff;
+    }
+}

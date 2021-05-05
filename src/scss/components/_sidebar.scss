@@ -1,0 +1,12 @@
+.sidebar{
+    margin-top: 5px;
+    width: 150px;
+    nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        a{
+            margin: 5px 0px;
+        }
+    }
+}
