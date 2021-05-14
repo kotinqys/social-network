@@ -23,7 +23,7 @@ const users = (state = initialState, action) => {
                 draft.isLoader = action.isLoader
                 break
             case 'FOLLOW':
-                draft.map(user => {
+                draft.users.map(user => {
                     if (user.id === action.userId) {
                         return user.followed = true
                     } else {
@@ -32,7 +32,7 @@ const users = (state = initialState, action) => {
                 })
                 break
             case 'UN_FOLLOW':
-                draft.map(user => {
+                draft.users.map(user => {
                     if (user.id === action.userId) {
                         return user.followed = false
                     }else {

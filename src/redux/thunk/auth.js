@@ -1,4 +1,4 @@
-import { setAuthUserData } from '../actions/auth'
+import { setAuthError, setAuthUserData } from '../actions/auth'
 import {instance} from './api'
 
 export const fetchAuth = () => {
@@ -21,6 +21,8 @@ export const login = (data) => {
             .then((response) => {
                 if (response.data.resultCode === 0) {
                     dispatch(fetchAuth());
+                } else {
+                    dispatch(setAuthError(true))
                 }
         });
         }

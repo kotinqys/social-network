@@ -4,7 +4,8 @@ let initialState = {
     id: null,
     login:null,
     email:null,
-    isAuth : false,
+    isAuth: false,
+    error:false,
 }
 
 const auth = (state = initialState, action) => {
@@ -15,6 +16,10 @@ const auth = (state = initialState, action) => {
                 draft.login = action.data.login
                 draft.email = action.data.email
                 draft.isAuth = action.isAuth
+                draft.error = false
+                break
+            case 'SET_ERROR':
+                draft.error = action.error
                 break
             default:
                 return state

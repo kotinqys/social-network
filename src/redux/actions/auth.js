@@ -4,4 +4,10 @@ export const setAuthUserData = (data,isAuth) => ({
     isAuth
 });
 
+export const setAuthError = (error) => ({
+    type: 'SET_ERROR',
+    error
+});
+
+
 

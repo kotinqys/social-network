@@ -4,6 +4,7 @@ import { getFriends } from '../../redux/thunk/friends';
 import Friend from './Friend';
 import { Redirect } from 'react-router';
 import Loader from '../Loader';
+import withAuthRedirect from '../hoc/withAuthRedirect';
 
 function Friends(props) {
   const dispatch = useDispatch();
@@ -17,10 +18,6 @@ function Friends(props) {
   useEffect(() => {
     dispatch(getFriends());
   }, []);
-
-  if (!isAuth) {
-    return <Redirect to='/login' />;
-  }
 
   return (
     <>
@@ -39,5 +36,5 @@ function Friends(props) {
     </>
   );
 }
-
-export default Friends;
+const AuthRedirectComponent = withAuthRedirect(Friends);
+export default AuthRedirectComponent;

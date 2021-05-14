@@ -8,9 +8,13 @@ import { required } from '../../utils/validators';
 import Input from '../common/Input';
 
 const Form = (props) => {
+  const { error } = useSelector((state) => ({
+    error: state.auth.error,
+  }));
   return (
     <form onSubmit={props.handleSubmit}>
       <h2>Вход</h2>
+      {error && <p style={{ color: 'red', fontSize: '14px' }}>Неверный логин или пароль</p>}
       <Field placeholder='login' name='email' validate={[required]} component={Input} />
       <Field
         placeholder='password'
