@@ -1,7 +1,17 @@
 import produce from "immer"
 import moment from 'moment';
+import { ProFileTypes } from "../actions/profile";
+import { PostsType, ProfileType } from "../types.ts/type";
 
-const initialState = {
+type InitialStateType = {
+    postsData: Array<PostsType>
+    profile: ProfileType | null,
+    status:string | null,
+    nextIndex: number,
+    isLoader: boolean,
+}
+
+const initialState:InitialStateType = {
     postsData: [
         { id: 0, post: 'Hello world, Today', countLike: 1245,isLiked:false,data:'April 10, 2021'},
     ],
@@ -11,7 +21,7 @@ const initialState = {
     isLoader: false,
 }
 
-const profile = (state = initialState, action) => {
+const profile = (state = initialState, action:ProFileTypes): InitialStateType => {
     return produce(state, draft => {
         switch (action.type) {
             case 'ADD_POST':

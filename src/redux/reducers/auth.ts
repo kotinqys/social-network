@@ -1,6 +1,15 @@
 import produce from "immer"
+import { AuthActionsType } from "../actions/auth"
 
-let initialState = {
+type InitialStateType = {
+    id: number | null,
+    login: string | null,
+    email:string | null,
+    isAuth: boolean,
+    error:boolean,
+}
+
+let initialState:InitialStateType = {
     id: null,
     login:null,
     email:null,
@@ -8,12 +17,12 @@ let initialState = {
     error:false,
 }
 
-const auth = (state = initialState, action) => {
+const auth = (state = initialState, action:AuthActionsType):InitialStateType => {
     return produce(state, draft => {
         switch (action.type) {
             case 'SET_USER_DATA':
                 draft.id = action.data.id
-                draft.login = action.data.login
+                draft.login = action.data.login 
                 draft.email = action.data.email
                 draft.isAuth = action.isAuth
                 draft.error = false

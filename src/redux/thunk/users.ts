@@ -2,7 +2,7 @@ import { follow, setLoader, setUsers,unFollow } from '../actions/users'
 import {instance} from './api'
 
 export const fetchUsers = (page=1) => {
-    return dispatch => {
+    return (dispatch:any) => {
         dispatch(setLoader(false));
         instance.get(`users?page=${page}&count=20`)
         .then((response) => {
@@ -12,8 +12,8 @@ export const fetchUsers = (page=1) => {
         }
 }
 
-export const followTH = (userId) => {
-    return dispatch => {
+export const followTH = (userId:number) => {
+    return (dispatch:any) => {
         instance.post(`follow/${userId}`)
             .then(response => {
             if (response.data.resultCode === 0) {
@@ -23,9 +23,9 @@ export const followTH = (userId) => {
         }
 }
 
-export const unFollowTH = (userId) => {
+export const unFollowTH = (userId:number) => {
     
-    return dispatch => {
+    return (dispatch:any) => {
         instance.delete(`follow/${userId}`)
         .then((response) => {
             if (response.data.resultCode === 0) {

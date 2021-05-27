@@ -1,25 +1,33 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import moment from 'moment';
 
 import Posts from './Posts';
 import { changeProfileStatus } from '../../redux/thunk/profile';
 import ProfilePhoto from './ProfilePhoto';
+import { ProfileType } from '../../redux/types.ts/type';
 
-function Profile({ profile, status, isItMe, dispatch }) {
+type PropsType = {
+  profile: ProfileType
+  status: string | null
+  isItMe: boolean
+  dispatch: any
+}
+
+const Profile:React.FC<PropsType> = ({ profile, status, isItMe, dispatch }) => {
   const [statusInp, setStatusInp] = useState(false);
 
   const writeStatus = () => {
     setStatusInp(true);
   };
 
-  const onKeyPressHandle = (e) => {
+  const onKeyPressHandle = (e: any) => {
     if (e.key === 'Enter') {
       setStatusInp(false);
-      dispatch(changeProfileStatus(statusInp));
+      dispatch(changeProfileStatus(e.target.value));
     }
   };
 
-  const onChangeStatus = (e) => {
+  const onChangeStatus = (e: any) => {
     setStatusInp(e.target.value);
   };
 

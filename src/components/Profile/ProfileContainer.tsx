@@ -7,11 +7,23 @@ import Profile from './Profile';
 import { fetchProfile, fetchProfileStatus } from '../../redux/thunk/profile';
 import Loader from '../Loader';
 import withAuthRedirect from '../hoc/withAuthRedirect';
+import { AppStateType } from '../../redux/store';
+import { ProfileType } from '../../redux/types.ts/type';
 
-function ProfileContainer(props) {
+type PropsType = {
+  match:any
+}
+
+type StatePropsType = {
+  profile: ProfileType | null
+  status: string | null
+  isLoader: boolean
+  id: number | null
+}
+const ProfileContainer:React.FC<PropsType> = (props) => {
   let userId = props.match.params.userId;
 
-  const { profile, status, isLoader, id } = useSelector((state) => ({
+  const { profile, status, isLoader, id } = useSelector((state:AppStateType):StatePropsType => ({
     profile: state.profile.profile,
     status: state.profile.status,
     isLoader: state.profile.isLoader,

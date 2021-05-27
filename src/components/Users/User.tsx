@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import small from '../../assets/photos_small.png';
+import { UserType } from '../../redux/types.ts/type';
 
-function User({ user, onFollowUser, onUnFollowUser }) {
+type PropsType = {
+  user: UserType
+  onFollowUser: (id:number) => void
+  onUnFollowUser: (id:number)=>void
+}
+
+
+const User:React.FC<PropsType> = ({ user, onFollowUser, onUnFollowUser }) => {
   const [follow, setFollow] = useState(false);
   const followUser = () => {
     setFollow(true);

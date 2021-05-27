@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 
-function Pagination({ totalItemsCount, pageSize, portionSize, currentPage, onChangeCurrentPage }) {
+type PropsType = {
+  totalItemsCount: number
+  pageSize: number
+  portionSize:number
+  currentPage: number
+  onChangeCurrentPage: (page:number)=>void
+}
+
+const Pagination:React.FC<PropsType> =({ totalItemsCount, pageSize, portionSize, currentPage, onChangeCurrentPage }) =>{
   const pagesCount = Math.ceil(totalItemsCount / pageSize);
   const pages = [];
 

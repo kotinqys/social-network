@@ -15,6 +15,9 @@ const reducers = combineReducers({
     form:formReducer
 })
 
+type RootReducerType = typeof reducers
+export type AppStateType = ReturnType<RootReducerType>
+
 const store = createStore(reducers,composeWithDevTools(applyMiddleware(thunk)))
 
 export default store;

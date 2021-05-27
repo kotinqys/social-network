@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import turnDown from '../../assets/turn-down.png';
+import { AppStateType } from '../../redux/store';
 
 import { fetchAuth, logout } from '../../redux/thunk/auth';
 
-function Header() {
+type StatePropsType = {
+    isAuth: boolean
+}
+
+const Header:React.FC<any> = () => {
   const dispatch = useDispatch();
-  const { isAuth } = useSelector((state) => ({
+  const { isAuth } = useSelector((state:AppStateType):StatePropsType=> ({
     isAuth: state.auth.isAuth,
   }));
 

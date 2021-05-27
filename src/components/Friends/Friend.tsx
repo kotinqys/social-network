@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import small from '../../assets/photos_small.png';
+import { UserType } from '../../redux/types.ts/type';
 
-function Friend({ user }) {
+type PropsType = {
+  user:UserType
+}
+
+const Friend:React.FC<PropsType> = ({ user }) => {
   return (
     <>
       <div className='friend'>

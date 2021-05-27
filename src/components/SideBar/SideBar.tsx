@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-function SideBar() {
+const SideBar:React.FC<any>=()=> {
   return (
     <div className='sidebar'>
       <nav>

@@ -5,10 +5,19 @@ import Friend from './Friend';
 import { Redirect } from 'react-router';
 import Loader from '../Loader';
 import withAuthRedirect from '../hoc/withAuthRedirect';
+import { AppStateType } from '../../redux/store';
+import { UserType } from '../../redux/types.ts/type';
 
-function Friends(props) {
+type StatePropsType = {
+  friends: Array<UserType>
+  totalCount: number | null
+  isAuth: boolean
+  isLoader: boolean
+}
+
+const Friends = ()  => {
   const dispatch = useDispatch();
-  const { friends, totalCount, isAuth, isLoader } = useSelector((state) => ({
+  const { friends, totalCount, isAuth, isLoader } = useSelector((state:AppStateType):StatePropsType => ({
     friends: state.friends.friends,
     totalCount: state.friends.totalCount,
     isAuth: state.auth.isAuth,
@@ -28,8 +37,8 @@ function Friends(props) {
           <div className='friends__title'>Все друзья {totalCount}</div>
           <hr />
           {friends &&
-            friends.map((user, index) => {
-              return <Friend key={user + index} user={user} />;
+            friends.map((user) => {
+              return <Friend key={user.id} user={user} />;
             })}
         </div>
       )}

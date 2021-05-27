@@ -1,8 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
+import { AppStateType } from '../../redux/store';
 
-function withAuthRedirect(Component) {
+
+
+const withAuthRedirect = (Component) => {
   return (props) => {
     const { isAuth } = useSelector((state) => ({
       isAuth: state.auth.isAuth,

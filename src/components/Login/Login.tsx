@@ -2,13 +2,18 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
+import { AppStateType } from '../../redux/store';
 import { login } from '../../redux/thunk/auth';
 import { required } from '../../utils/validators';
 
 import Input from '../common/Input';
 
-const Form = (props) => {
-  const { error } = useSelector((state) => ({
+type StatePropsType = {
+  error:boolean
+}
+
+const Form = (props:any) => {
+  const { error } = useSelector((state:AppStateType):StatePropsType => ({
     error: state.auth.error,
   }));
   return (
@@ -32,16 +37,21 @@ const Form = (props) => {
   );
 };
 
+
+type StatePropsLoginType = {
+  isAuth:boolean
+}
+
 const LoginForm = reduxForm({
   form: 'login',
 })(Form);
 
-function Login(props) {
+function Login() {
   const dispatch = useDispatch();
-  const { isAuth } = useSelector((state) => ({
+  const { isAuth } = useSelector((state:AppStateType):StatePropsLoginType => ({
     isAuth: state.auth.isAuth,
   }));
-  const onSubmit = (data) => {
+  const onSubmit = (data:any) => {
     dispatch(login(data));
   };
 

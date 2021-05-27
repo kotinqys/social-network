@@ -2,8 +2,8 @@ import { setLoader } from '../actions/users'
 import {instance} from './api'
 import { setProfileLoader, setStatus, setUserProfile } from '../actions/profile';
 
-export const fetchProfile = (userId) => {
-    return dispatch => {
+export const fetchProfile = (userId:number) => {
+    return (dispatch:any) => {
         dispatch(setLoader(false));
         instance
         .get(`profile/${userId}`)
@@ -14,8 +14,8 @@ export const fetchProfile = (userId) => {
         }
 }
 
-export const fetchProfileStatus = (userId) => {
-    return dispatch => {
+export const fetchProfileStatus = (userId:number) => {
+    return (dispatch:any )=> {
         dispatch(setProfileLoader(true))
         instance
         .get(`profile/status/${userId}`)
@@ -26,8 +26,8 @@ export const fetchProfileStatus = (userId) => {
         }
 }
 
-export const changeProfileStatus = (status) => {
-    return dispatch => {
+export const changeProfileStatus = (status:string) => {
+    return (dispatch:any) => {
         instance
         .put(`profile/status`,{status})
             .then((response) => {

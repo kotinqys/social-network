@@ -2,7 +2,7 @@ import { setAuthError, setAuthUserData } from '../actions/auth'
 import {instance} from './api'
 
 export const fetchAuth = () => {
-    return dispatch => {
+    return (dispatch:any) => {
         instance
             .get(`auth/me`)
             .then((response) => {
@@ -13,9 +13,9 @@ export const fetchAuth = () => {
         }
 }
 
-export const login = (data) => {
+export const login = (data:any) => {
     const { email, password, rememberMe } = data
-    return dispatch => {
+    return (dispatch:any) => {
         instance
             .post(`auth/login`,{email,password,rememberMe})
             .then((response) => {
@@ -29,7 +29,7 @@ export const login = (data) => {
 }
 
 export const logout = () => {
-    return dispatch => {
+    return (dispatch:any )=> {
         instance
             .delete(`auth/login`)
             .then((response) => {

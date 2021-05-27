@@ -1,6 +1,11 @@
 import React from 'react';
 
-function Input({ input, meta, ...props }) {
+type PropsType = {
+  input: HTMLCollection
+  meta: any
+}
+
+const Input:React.FC<PropsType> = ({ input, meta, ...props }) => {
   return (
     <div>
       <input {...input} {...props} />

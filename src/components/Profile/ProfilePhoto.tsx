@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
+import { PhotosType } from '../../redux/types.ts/type';
 
-function ProfilePhoto({ photos, isItMe }) {
+type PropsType = {
+  photos:PhotosType
+  isItMe:boolean
+}
+
+const ProfilePhoto:React.FC<PropsType> = ({ photos, isItMe })  =>{
   const [visibleInput, setVisibleInput] = useState(false);
 
   const onVisible = () => {

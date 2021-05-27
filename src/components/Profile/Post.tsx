@@ -1,7 +1,15 @@
 import React from 'react';
 import like from '../../assets/like.png';
+import { PostsType } from '../../redux/types.ts/type';
 
-function Post({ post, index, onDeletePost, putLike }) {
+type PropsType = {
+  post: PostsType
+  index: number
+  onDeletePost: (id:number) => void
+  putLike:(index:number)=>void
+}
+
+const Post:React.FC<PropsType> = ({ post, index, onDeletePost, putLike }) =>{
   const deletePost = () => {
     onDeletePost(index);
   };
@@ -25,7 +33,7 @@ function Post({ post, index, onDeletePost, putLike }) {
           <span onClick={deletePost}>X</span>
         </div>
         <div className='post__body'>{post.post}</div>
-        <hr align='center' width='100%' size='2' color='#e5e5e5' />
+        <hr className='post__hr'  />
         <div className='post__likes'>
           <img
             onClick={onPutLike}
