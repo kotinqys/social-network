@@ -1,21 +1,26 @@
-import { setLoader } from '../actions/users'
+import { ProFileActionTypes} from './../actions/profile';
 import {instance} from './api'
-import { setProfileLoader, setStatus, setUserProfile } from '../actions/profile';
+import { setProfileLoader, setStatus, setUserProfile,setPhoto } from '../actions/profile';
+import { ThunkAction } from 'redux-thunk';
+import { AppStateType } from '../store';
 
-export const fetchProfile = (userId:number) => {
-    return (dispatch:any) => {
-        dispatch(setLoader(false));
+
+type ThunkType = ThunkAction<void, AppStateType, unknown, ProFileActionTypes>
+
+export const fetchProfile = (userId:number):ThunkType => {
+    return (dispatch) => {
+        dispatch(setProfileLoader(true));
         instance
         .get(`profile/${userId}`)
             .then((response) => {
-            dispatch(setLoader(true));
+            dispatch(setProfileLoader(false));
             dispatch(setUserProfile(response.data));
         });
         }
 }
 
-export const fetchProfileStatus = (userId:number) => {
-    return (dispatch:any )=> {
+export const fetchProfileStatus = (userId:number):ThunkType => {
+    return (dispatch )=> {
         dispatch(setProfileLoader(true))
         instance
         .get(`profile/status/${userId}`)
@@ -26,8 +31,8 @@ export const fetchProfileStatus = (userId:number) => {
         }
 }
 
-export const changeProfileStatus = (status:string) => {
-    return (dispatch:any) => {
+export const changeProfileStatus = (status:string):ThunkType => {
+    return (dispatch) => {
         instance
         .put(`profile/status`,{status})
             .then((response) => {
@@ -36,4 +41,22 @@ export const changeProfileStatus = (status:string) => {
             }
         });
         }
+}
+
+export const savePhoto = (photos:any):ThunkType => {
+    return (dispatch) => {
+        const formData = new FormData()
+        formData.append('image',photos)
+        instance
+            .put(`profile/photo`, formData, {
+                 headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setPhoto(response.data.data.photos));
+            }
+            })
+    };
 }

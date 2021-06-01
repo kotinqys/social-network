@@ -1,8 +1,13 @@
+import { UsersActionTypes } from './../actions/users';
+import { ThunkAction } from 'redux-thunk'
 import { follow, setLoader, setUsers,unFollow } from '../actions/users'
+import { AppStateType } from '../store'
 import {instance} from './api'
 
-export const fetchUsers = (page=1) => {
-    return (dispatch:any) => {
+type Thunktype = ThunkAction<void, AppStateType, unknown, UsersActionTypes>
+
+export const fetchUsers = (page=1):Thunktype => {
+    return (dispatch) => {
         dispatch(setLoader(false));
         instance.get(`users?page=${page}&count=20`)
         .then((response) => {
@@ -12,8 +17,8 @@ export const fetchUsers = (page=1) => {
         }
 }
 
-export const followTH = (userId:number) => {
-    return (dispatch:any) => {
+export const followTH = (userId:number):Thunktype => {
+    return (dispatch) => {
         instance.post(`follow/${userId}`)
             .then(response => {
             if (response.data.resultCode === 0) {
@@ -23,9 +28,9 @@ export const followTH = (userId:number) => {
         }
 }
 
-export const unFollowTH = (userId:number) => {
+export const unFollowTH = (userId:number):Thunktype => {
     
-    return (dispatch:any) => {
+    return (dispatch) => {
         instance.delete(`follow/${userId}`)
         .then((response) => {
             if (response.data.resultCode === 0) {

@@ -1,5 +1,4 @@
-import { UsersType, UserType } from "../types.ts/type"
-
+import { UsersType } from "../types.ts/type"
 
 type SetFriendsType = {
     type: 'SET_FRIENDS',
@@ -20,7 +19,7 @@ export const setLoader = (isLoader:boolean):SetLoaderType => ({
     isLoader
 })
 
-export type FriendsType = SetFriendsType | SetLoaderType 
+export type FriendsActionType = SetFriendsType | SetLoaderType 
 
 
 

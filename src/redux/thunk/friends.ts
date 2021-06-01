@@ -1,8 +1,12 @@
 import { instance } from './api'
-import {setFriends, setLoader} from '../actions/friends'
+import { FriendsActionType, setFriends, setLoader } from '../actions/friends'
+import { ThunkAction } from 'redux-thunk'
+import { AppStateType } from '../store'
 
-export const getFriends = () => {
-    return (dispatch:any) => {
+type ThunkType = ThunkAction<void,AppStateType,unknown,FriendsActionType>
+
+export const getFriends = ():ThunkType=> {
+    return (dispatch) => {
         dispatch(setLoader(true))
         instance.get(`users?friend=true`)
             .then((response) => {

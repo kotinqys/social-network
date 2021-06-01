@@ -1,6 +1,6 @@
 import produce from "immer"
 import moment from 'moment';
-import { ProFileTypes } from "../actions/profile";
+import { ProFileActionTypes } from "../actions/profile";
 import { PostsType, ProfileType } from "../types.ts/type";
 
 type InitialStateType = {
@@ -21,7 +21,7 @@ const initialState:InitialStateType = {
     isLoader: false,
 }
 
-const profile = (state = initialState, action:ProFileTypes): InitialStateType => {
+const profile = (state = initialState, action:ProFileActionTypes): InitialStateType => {
     return produce(state, draft => {
         switch (action.type) {
             case 'ADD_POST':
@@ -55,6 +55,11 @@ const profile = (state = initialState, action:ProFileTypes): InitialStateType =>
                 break
             case 'SET_PROFILE_LOADER':
                 draft.isLoader = action.loader
+                break
+            case 'SET_PHOTO':
+                if (draft.profile) {
+                  draft.profile.photos = action.photos  
+                }
                 break
             default:
                 return state

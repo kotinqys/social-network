@@ -1,8 +1,12 @@
-import { setAuthError, setAuthUserData } from '../actions/auth'
+import { ThunkAction } from 'redux-thunk';
+import { AuthActionsType, setAuthError, setAuthUserData } from '../actions/auth'
+import { AppStateType } from '../store';
 import {instance} from './api'
 
-export const fetchAuth = () => {
-    return (dispatch:any) => {
+type ThunkType = ThunkAction<void,AppStateType,unknown,AuthActionsType>
+
+export const fetchAuth = ():ThunkType => {
+    return (dispatch) => {
         instance
             .get(`auth/me`)
             .then((response) => {
@@ -13,9 +17,9 @@ export const fetchAuth = () => {
         }
 }
 
-export const login = (data:any) => {
+export const login = (data:any):ThunkType => {
     const { email, password, rememberMe } = data
-    return (dispatch:any) => {
+    return (dispatch) => {
         instance
             .post(`auth/login`,{email,password,rememberMe})
             .then((response) => {
@@ -28,8 +32,8 @@ export const login = (data:any) => {
         }
 }
 
-export const logout = () => {
-    return (dispatch:any )=> {
+export const logout = ():ThunkType => {
+    return (dispatch)=> {
         instance
             .delete(`auth/login`)
             .then((response) => {

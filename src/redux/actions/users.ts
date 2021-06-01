@@ -38,6 +38,6 @@ export const unFollow = (userId:number):unFollowType => ({
     userId
 })
 
-export type UsersTypes = setUsersType | setLoaderType | followType | unFollowType
+export type UsersActionTypes = setUsersType | setLoaderType | followType | unFollowType
 
 

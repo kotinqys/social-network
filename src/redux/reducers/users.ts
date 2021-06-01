@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { UsersTypes } from '../actions/users'
+import { UsersActionTypes } from '../actions/users'
 import { UserType } from '../types.ts/type'
 
 type InitialStateType = {
@@ -17,7 +17,7 @@ let initialState:InitialStateType = {
     isLoader:false
 }
 
-const users = (state = initialState, action:UsersTypes) => {
+const users = (state = initialState, action:UsersActionTypes) => {
     return produce(state, draft => {
         switch (action.type) {
             case 'SET_USERS':

@@ -1,6 +1,3 @@
-import { ProfileType, UserType } from "../types.ts/type";
-
-
 type Data = {
     id: number
     email: string

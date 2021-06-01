@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router'; 
+import { changeProfileStatus,savePhoto } from '../../redux/thunk/profile';
 
 import Profile from './Profile';
 
@@ -46,10 +47,17 @@ const ProfileContainer:React.FC<PropsType> = (props) => {
     dispatch(fetchProfileStatus(userId));
   }, [dispatch, userId]);
 
+  const onChangeProfileStatus = (data:any) => {
+    dispatch(changeProfileStatus(data));
+  }
+
+  const onSavePhoto = (photo:FileList) => {
+    dispatch(savePhoto(photo))
+  }
   return (
     <>
       {!isLoader && profile !== null ? (
-        <Profile profile={profile} status={status} isItMe={isItMe} dispatch={dispatch} />
+        <Profile profile={profile} status={status} isItMe={isItMe} onChangeProfileStatus={onChangeProfileStatus} savePhoto={ onSavePhoto}/>
       ) : (
         <Loader />
       )}

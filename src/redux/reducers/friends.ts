@@ -1,5 +1,5 @@
 import produce from "immer"
-import { FriendsType } from "../actions/friends"
+import { FriendsActionType } from "../actions/friends"
 import { UserType } from "../types.ts/type"
 
 type initialStateType = {
@@ -13,7 +13,7 @@ const initialState:initialStateType = {
     isLoader:false
 }
 
-const friends= (state = initialState, action:FriendsType):initialStateType => {
+const friends= (state = initialState, action:FriendsActionType):initialStateType => {
     return produce(state, draft => {
         switch (action.type) {
             case 'SET_FRIENDS':

@@ -60,7 +60,17 @@ export const setProfileLoader = (loader:boolean):SetProfileLoaderType => ({
     loader
 })
 
-export type ProFileTypes = AddPostType | DeletePostType | PutLikeToPostType | SetUserProfileType | setStatusType | SetProfileLoaderType
+type SetPhotoType = {
+    type: 'SET_PHOTO',
+    photos: any
+}
+
+export const setPhoto = (photos:any):SetPhotoType => ({
+    type: 'SET_PHOTO',
+    photos
+})
+
+export type ProFileActionTypes = AddPostType | DeletePostType | PutLikeToPostType | SetUserProfileType | setStatusType | SetProfileLoaderType | SetPhotoType
 
 
 

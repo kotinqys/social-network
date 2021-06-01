@@ -5,15 +5,20 @@ import turnDown from '../../assets/turn-down.png';
 import { AppStateType } from '../../redux/store';
 
 import { fetchAuth, logout } from '../../redux/thunk/auth';
+import photo from '../../assets/photos_small.png'
 
 type StatePropsType = {
-    isAuth: boolean
+  isAuth: boolean
+  login: string | null
+  id: number | null
 }
 
 const Header:React.FC<any> = () => {
   const dispatch = useDispatch();
-  const { isAuth } = useSelector((state:AppStateType):StatePropsType=> ({
+  const { isAuth,login,id } = useSelector((state: AppStateType): StatePropsType => ({
+    login: state.auth.login,
     isAuth: state.auth.isAuth,
+    id: state.auth.id
   }));
 
   const [visible, setVisible] = useState(false);
@@ -38,10 +43,10 @@ const Header:React.FC<any> = () => {
         {isAuth ? (
           <>
             <div className='header__profile' onClick={onVisisble}>
-              Диас
+              {login}
               <img
                 className='photo'
-                src='https://sun9-72.userapi.com/impg/BTTPhoECky4NqwKOT8tkgmG5y5-00GAKCWHyWA/9QeIgD2D1OA.jpg?size=640x882&quality=96&sign=08bd341eb1fb284531b265f6733b4733&type=album'
+                src={photo}
                 alt=''
               />
               <img
