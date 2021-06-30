@@ -1,8 +1,8 @@
 import { ProFileActionTypes} from './../actions/profile';
-import {instance} from './api'
 import { setProfileLoader, setStatus, setUserProfile,setPhoto } from '../actions/profile';
 import { ThunkAction } from 'redux-thunk';
 import { AppStateType } from '../store';
+import { profileAPI } from '../../api/api';
 
 
 type ThunkType = ThunkAction<void, AppStateType, unknown, ProFileActionTypes>
@@ -10,11 +10,10 @@ type ThunkType = ThunkAction<void, AppStateType, unknown, ProFileActionTypes>
 export const fetchProfile = (userId:number):ThunkType => {
     return (dispatch) => {
         dispatch(setProfileLoader(true));
-        instance
-        .get(`profile/${userId}`)
-            .then((response) => {
+        profileAPI.getProfileUserId(userId)
+            .then((data) => {
             dispatch(setProfileLoader(false));
-            dispatch(setUserProfile(response.data));
+            dispatch(setUserProfile(data));
         });
         }
 }
@@ -22,21 +21,19 @@ export const fetchProfile = (userId:number):ThunkType => {
 export const fetchProfileStatus = (userId:number):ThunkType => {
     return (dispatch )=> {
         dispatch(setProfileLoader(true))
-        instance
-        .get(`profile/status/${userId}`)
-            .then((response) => {
+        profileAPI.getProfileStatus(userId)
+            .then((data) => {
             dispatch(setProfileLoader(false))
-            dispatch(setStatus(response.data));
+            dispatch(setStatus(data));
         });
         }
 }
 
 export const changeProfileStatus = (status:string):ThunkType => {
     return (dispatch) => {
-        instance
-        .put(`profile/status`,{status})
-            .then((response) => {
-                if (response.data.resultCode === 0) {
+        profileAPI.updateProfileStatus(status)
+            .then((data) => {
+                if (data.resultCode === 0) {
                     dispatch(setStatus(status));
             }
         });
@@ -47,15 +44,10 @@ export const savePhoto = (photos:any):ThunkType => {
     return (dispatch) => {
         const formData = new FormData()
         formData.append('image',photos)
-        instance
-            .put(`profile/photo`, formData, {
-                 headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setPhoto(response.data.data.photos));
+        profileAPI.updatePhoto(formData)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setPhoto(data.data.photos));
             }
             })
     };

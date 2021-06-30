@@ -11,14 +11,11 @@ type PropsType = {
 
 
 const User:React.FC<PropsType> = ({ user, onFollowUser, onUnFollowUser }) => {
-  const [follow, setFollow] = useState(false);
   const followUser = () => {
-    setFollow(true);
     onFollowUser(user.id);
   };
 
   const unFollowUser = () => {
-    setFollow(false);
     onUnFollowUser(user.id);
   };
 
@@ -41,7 +38,7 @@ const User:React.FC<PropsType> = ({ user, onFollowUser, onUnFollowUser }) => {
           </div>
         </div>
         <div className='user__isfollow'>
-          {follow ? (
+          {user.followed ? (
             <button className='unFollow' onClick={unFollowUser}>
               Отписаться
             </button>
